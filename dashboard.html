@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwissArmyKnife NewTab</title>
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="pomodoro.css" />
+    <audio
+      src="http://soundbible.com/mp3/service-bell_daniel_simion.mp3"
+    ></audio>
+  </head>
+
+  <body>
+    <main>
+      <!-- CRYPTO AND WEATHER -->
+      <div id="top-elements">
+        <div id="crypto">
+          <div class="crypto-header">
+            <img src="" alt="Loopring" id="coinImage" />
+            <p id="coinName" class="coinName"></p>
+          </div>
+
+          <div>
+            <p class="crypto-price" id="currentPrice"></p>
+            <p class="crypto-price" id="dayHigh"></p>
+            <p class="crypto-price" id="dayLow"></p>
+          </div>
+        </div>
+
+        <!-- <div><iframe src="https://duckduckgo.com/search.html?prefill=Search DuckDuckGo" style="overflow:hidden;margin:0;padding:0;width:408px;height:40px;" frameborder="0"></iframe></div> -->
+        <!-- <div><form method="get" id="search" action="https://duckduckgo.com/">
+                <input type="hidden" name="sites" value="mentalpivot.com"/>
+                <input class="search" type="text" name="q" maxlength="300" placeholder="Search"/>
+                <input type="submit" value="Search" style="visibility: hidden;" /></form></div> -->
+
+        <div id="weather">Weather Loading....</div>
+      </div>
+
+      <!-- POMODORO -->
+      <div class="containerPomo">
+        <div class="glass">
+          <div class="modeSelector">
+            <button
+              class="modeSelector__Button active"
+              id="pomodoroButton"
+              data-mode="pomodoro"
+            >
+              Pomodoro
+            </button>
+
+            <button
+              class="modeSelector__Button"
+              id="shortButton"
+              data-mode="short"
+            >
+              Short Break
+            </button>
+
+            <button
+              class="modeSelector__Button"
+              id="longButton"
+              data-mode="long"
+            >
+              Long Break
+            </button>
+          </div>
+
+          <div class="timerControl">
+            <!-- <i class="fa fa-refresh" id="restart" aria-hidden="true"></i> -->
+            <i
+              class="fa fa-play"
+              id="toggle"
+              data-paused="true"
+              aria-hidden="true"
+            ></i>
+            <!-- <i class="fa fa-pause" id="pause" aria-hidden="true"></i> -->
+            <!-- <i class="fa fa-stop" aria-hidden="true"></i> -->
+          </div>
+        </div>
+        <h1 class="timer" id="timer" data-mode="pomodoro">25:00</h1>
+      </div>
+
+      <!--
+        <div id="middle-elements"></div>
+            <h1 id="greetingHeading">Hello...</h1>
+            <h1 id="FocusPrompt">Block Sites and Distraction. Focus on Now.</h1> -->
+      <!-- <p class="time" id="currentTimeEl">Tick..Tock..</p>
+        </div>  -->
+
+      <!-- TO DO LIST   -->
+      <div id="toDo">
+        <h1>To Do List</h1>
+        <div class="container">
+          <input
+            id="inputField"
+            type="text"
+            placeholder="Write Your Goals for Today"
+          /><button id="addToDo">+</button>
+          <div class="to-dos" id="toDoContainer"></div>
+        </div>
+      </div>
+
+      <!-- JOKE AND QUOTE -->
+      <div id="bottom-elements">
+        <div id="jokeTextBox">
+          <p class="OTD">Joke Of The Day :</p>
+          <div id="jokeText"><p>Joke Loading....</p></div>
+        </div>
+
+        <div id="quoteTextBox">
+          <p class="OTD">Quote Of The Day :</p>
+          <div id="quoteText"><p>Quote Loading....</p></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- <script language="Javascript" type="text/Javascript">
+      window.onbeforeunload = function () {
+            return 'Closing or Reloading Tab will Reset the Pomodoro Timer and ToDoList.Focus on your Work.';};
+    </script> -->
+    <!-- <script>
+      window.addEventListener('beforeunload', function (e) {
+      e.preventDefault();
+      e.returnValue = ''; });
+    </script> -->
+
+    <!-- <script src="js/dashboard/greetingtime.js"></script> -->
+
+    <script src="js/dashboard/crypto.js"></script>
+    <script src="js/dashboard/image.js"></script>
+    <script src="js/dashboard/weather.js"></script>
+    <script src="js/dashboard/joke.js"></script>
+    <script src="js/dashboard/quote.js"></script>
+    <script src="js/dashboard/todo.js"></script>
+    <script src="pomodoro.js"></script>
+  </body>
+</html>
