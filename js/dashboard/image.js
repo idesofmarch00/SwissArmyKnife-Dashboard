@@ -3,7 +3,7 @@ fetch(
 )
   .then((res) => res.json())
   .then((data) => {
-    let backgroundImage = data.urls.full;
+    let backgroundImage = data.urls.regular;
     document.body.style.backgroundImage = `url(${backgroundImage})`;
   })
   .catch((err) => {
