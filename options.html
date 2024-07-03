@@ -9,83 +9,7 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
-        color: #343a40;
-        margin: 0;
-        padding: 0;
-      }
-
-      .container {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 1rem;
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .header {
-        background-color: #007bff;
-        color: #ffffff;
-        padding: 1rem;
-        border-radius: 8px 8px 0 0;
-        text-align: center;
-      }
-
-      .info {
-        background-color: #17a2b8;
-        color: #ffffff;
-        padding: 1rem;
-        border-radius: 0 0 8px 8px;
-        margin-bottom: 1rem;
-      }
-
-      textarea {
-        width: 100%;
-        border: 2px solid #ced4da;
-        border-radius: 4px;
-        padding: 0.5rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        resize: vertical;
-      }
-
-      #controls {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-
-      #controls > div {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      label {
-        font-weight: bold;
-        margin-right: 0.6em;
-      }
-
-      select,
-      input[type="checkbox"] {
-        font-size: 1rem;
-        padding: 0.5rem;
-        border: 2px solid #ced4da;
-        border-radius: 4px;
-      }
-
-      .footer {
-        text-align: center;
-        margin-top: 1rem;
-        font-size: 0.9rem;
-        color: #6c757d;
-      }
-    </style>
+    <link rel="stylesheet" href="options.css" />
   </head>
 
   <body>
@@ -96,12 +20,12 @@
 
       <div class="info">
         <p>
-          Specify sites you want to block below and check Enabled. Each site must
-          be on a
+          Specify sites you want to block below and check Enabled. Each site
+          must be on a
           <strong>separate line</strong>.<br />
           Sites starting with
-          <code><strong>!</strong></code> will be exceptions to the rule and will
-          be allowed.
+          <code><strong>!</strong></code> will be exceptions to the rule and
+          will be allowed.
         </p>
       </div>
 
@@ -115,10 +39,14 @@
 
       <div id="controls">
         <div>
-          <label for="resolution-select">What to do when a site is blocked?</label>
+          <label for="resolution-select"
+            >What to do when a site is blocked?</label
+          >
           <select id="resolution-select">
             <option value="CLOSE_TAB">Close Tab</option>
-            <option value="SHOW_BLOCKED_INFO_PAGE">Show Blocked info page</option>
+            <option value="SHOW_BLOCKED_INFO_PAGE">
+              Show Blocked info page
+            </option>
           </select>
         </div>
         <div>
