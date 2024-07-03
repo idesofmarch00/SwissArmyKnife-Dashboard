@@ -19,7 +19,13 @@ function cryptoTicker() {
       dayHigh.textContent = `24-hour High: ${data.market_data.high_24h.inr} INR`;
       dayLow.textContent = `24-hour Low: ${data.market_data.low_24h.inr} INR`;
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error(err);
+      coinName.textContent = "Failed to load data";
+      currentPrice.textContent = "";
+      dayHigh.textContent = "";
+      dayLow.textContent = "";
+    });
 }
 
 setInterval(cryptoTicker, 1000);
