@@ -16,9 +16,9 @@ const TIMER = {
 function changeMode(e) {
   mainButton.classList.replace("fa-stop", "fa-play");
   mainButton.dataset.paused = "true";
-
+  const parentElement = e.target.parentElement;
   for (let i = 0; i < 3; i++) {
-    e.path[1].children[i].classList.remove("active");
+    parentElement.children[i].classList.remove("active");
   }
   e.target.classList.add("active");
 
