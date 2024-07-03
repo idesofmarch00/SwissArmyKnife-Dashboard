@@ -57,31 +57,31 @@
 
 // init();
 
-
-const weather = document.getElementById('weather')
+const weather = document.getElementById("weather");
 const API_KEY = "5b6ef3caa38dfdec0ef471202470c402";
 
-navigator.geolocation.getCurrentPosition(position => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${API_KEY}&units=metric`)
-        .then(res => {
-            if (!res.ok) {
-            throw Error('Weather data not available.')
-        }
-            return res.json()
-        })
-        .then(data => {
-                console.log(data)
-                const iconURL = `"http://openweathermap.org/img/w/${data.weather[0].icon}.png"`
-                const city = data.name
-                const temperature = Math.round(data.main.temp) 
+navigator.geolocation.getCurrentPosition((position) => {
+  fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${API_KEY}&units=metric`
+  )
+    .then((res) => {
+      if (!res.ok) {
+        throw Error("Weather data not available.");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      const iconURL = `"http://openweathermap.org/img/w/${data.weather[0].icon}.png"`;
+      const city = data.name;
+      const temperature = Math.round(data.main.temp);
 
-                weather.innerHTML = `
+      weather.innerHTML = `
                     <div class="weather-header">
                         <img id="weatherIcon"src=${iconURL} >
                         <p class="weather-temperature">${temperature}&degC</p>
                     </div>
                     <p class="weather-city">${city}</p>
-                `
-            })
-        .catch(err => console.error(err))
-})
+                `;
+    })
+    .catch((err) => console.error(err));
+});
