@@ -5,3 +5,5 @@
 .vs/VSWorkspaceState.json
 .vs/slnx.sqlite
 .vscode/settings.json
+.env
+env.js
