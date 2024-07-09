@@ -5,7 +5,7 @@ const dayHigh = document.getElementById("dayHigh");
 const dayLow = document.getElementById("dayLow");
 
 function cryptoTicker() {
-  fetch("https://api.coingecko.com/api/v3/coins/loopring")
+  fetch("https://api.coingecko.com/api/v3/coins/bitcoin")
     .then((res) => {
       if (!res.ok) {
         throw Error("Something went wrong");
