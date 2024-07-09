@@ -1,9 +1,15 @@
+/**
+ * DOM elements for displaying cryptocurrency data
+ */
 const coinImage = document.getElementById("coinImage");
 const coinName = document.getElementById("coinName");
 const currentPrice = document.getElementById("currentPrice");
 const dayHigh = document.getElementById("dayHigh");
 const dayLow = document.getElementById("dayLow");
 
+/**
+ * Fetches the latest Bitcoin data from the CoinGecko API and updates the DOM elements.
+ */
 function cryptoTicker() {
   fetch("https://api.coingecko.com/api/v3/coins/bitcoin")
     .then((res) => {
@@ -28,4 +34,7 @@ function cryptoTicker() {
     });
 }
 
-setInterval(cryptoTicker, 1000);
+/**
+ * Sets an interval to update the cryptocurrency data every 60 minutes (3,600,000 milliseconds).
+ */
+setInterval(cryptoTicker, 3600000);
