@@ -126,11 +126,6 @@
       window.onbeforeunload = function () {
             return 'Closing or Reloading Tab will Reset the Pomodoro Timer and ToDoList.Focus on your Work.';};
     </script> -->
-    <!-- <script>
-      window.addEventListener('beforeunload', function (e) {
-      e.preventDefault();
-      e.returnValue = ''; });
-    </script> -->
 
     <!-- <script src="js/dashboard/greetingtime.js"></script> -->
     <script src="js/dashboard/crypto.js"></script>
@@ -140,5 +135,12 @@
     <script src="js/dashboard/quote.js"></script>
     <script src="js/dashboard/todo.js"></script>
     <script src="pomodoro.js"></script>
+    <!-- <script>
+      window.addEventListener("beforeunload", function (e) {
+        e.preventDefault();
+        e.returnValue =
+          "Closing or Reloading Tab will Reset the Pomodoro Timer and ToDoList. Focus on your Work.";
+      });
+    </script> -->
   </body>
 </html>

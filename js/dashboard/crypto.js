@@ -19,6 +19,7 @@ function cryptoTicker() {
       return res.json();
     })
     .then((data) => {
+      console.log(data);
       coinImage.src = data.image.small;
       coinName.textContent = data.name;
       currentPrice.textContent = `Current price: ${data.market_data.current_price.inr} INR`;
@@ -27,8 +28,8 @@ function cryptoTicker() {
     })
     .catch((err) => {
       console.error(err);
-      coinName.textContent = "Failed to load data";
-      currentPrice.textContent = "";
+      coinName.textContent = "";
+      currentPrice.textContent = "Failed to load data";
       dayHigh.textContent = "";
       dayLow.textContent = "";
     });
