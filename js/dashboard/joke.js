@@ -15,7 +15,4 @@ function generateJoke() {
     });
 }
 
-/**
- * Sets an interval to update the joke every 10 milliseconds.
- */
-setInterval(generateJoke, 3600000);
+generateJoke();

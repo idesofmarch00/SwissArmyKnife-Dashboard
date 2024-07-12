@@ -35,7 +35,4 @@ function cryptoTicker() {
     });
 }
 
-/**
- * Sets an interval to update the cryptocurrency data every 60 minutes (3,600,000 milliseconds).
- */
-setInterval(cryptoTicker, 3600000);
+cryptoTicker();
