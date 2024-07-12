@@ -46,5 +46,5 @@ function GreetingTime() {
   }
 }
 
-// Update the greeting message every 10 milliseconds
-setInterval(GreetingTime, 10);
+// Update the greeting message every 10000 milliseconds
+setInterval(GreetingTime, 10000);

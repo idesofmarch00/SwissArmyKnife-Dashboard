@@ -25,4 +25,4 @@ function generateQuote() {
     });
 }
 
-setInterval(generateQuote(), 10);
+setInterval(generateQuote, 3600000);
