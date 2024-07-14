@@ -61,3 +61,16 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 });
+
+document.getElementById("reminder-time").addEventListener("change", (event) => {
+  const reminderTime = parseInt(event.target.value, 10);
+  chrome.storage.local.set({ reminderTime });
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  chrome.storage.local.get(["reminderTime"], (result) => {
+    if (result.reminderTime) {
+      document.getElementById("reminder-time").value = result.reminderTime;
+    }
+  });
+});
