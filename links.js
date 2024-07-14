@@ -28,6 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
       linksContainer.appendChild(linkItem);
     });
   });
+
+  document
+    .getElementById("export-links")
+    .addEventListener("click", exportLinks);
+  document.getElementById("import-links-btn").addEventListener("click", () => {
+    document.getElementById("import-links").click();
+  });
+  document
+    .getElementById("import-links")
+    .addEventListener("change", importLinks);
 });
 
 function deleteLink(index) {
@@ -38,4 +48,35 @@ function deleteLink(index) {
       location.reload(); // Reload the page to reflect the changes
     });
   });
+}
+
+function exportLinks() {
+  chrome.storage.local.get({ savedLinks: [] }, (result) => {
+    const dataStr =
+      "data:text/json;charset=utf-8," +
+      encodeURIComponent(JSON.stringify(result.savedLinks));
+    const downloadAnchorNode = document.createElement("a");
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "saved_links.json");
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  });
+}
+
+function importLinks(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const importedLinks = JSON.parse(e.target.result);
+      chrome.storage.local.get({ savedLinks: [] }, (result) => {
+        const savedLinks = result.savedLinks.concat(importedLinks);
+        chrome.storage.local.set({ savedLinks }, () => {
+          location.reload(); // Reload the page to reflect the changes
+        });
+      });
+    };
+    reader.readAsText(file);
+  }
 }
