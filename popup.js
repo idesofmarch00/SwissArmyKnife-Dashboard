@@ -32,3 +32,7 @@ document.getElementById("save-link").addEventListener("click", () => {
 document.getElementById("view-links").addEventListener("click", () => {
   chrome.tabs.create({ url: "links.html" });
 });
+
+document.getElementById("options-links").addEventListener("click", () => {
+  chrome.tabs.create({ url: "options.html" });
+});
