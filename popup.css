@@ -1,0 +1,41 @@
+body {
+  width: 200px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  background-color: #cacaca;
+  transition: transform 0.3s ease;
+  transform: scale(0.95);
+}
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.options {
+  background-color: #ffc107;
+}
+.options:hover {
+  background-color: #d49f00;
+}
+.save {
+  background-color: rgb(0, 177, 77);
+}
+.save:hover {
+  background-color: rgb(0, 153, 66);
+}
+.list {
+  background-color: #59a8fc;
+}
+.list:hover {
+  background-color: #0066d3;
+}
+button:hover {
+  color: black;
+}

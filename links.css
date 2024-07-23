@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #212121; /* Dark mode background */
+  color: #ffffff; /* High contrast text color for dark mode */
+}
+.heading-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #333333; /* Dark background for heading with high contrast */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+.link-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #444444; /* Dark background for links with high contrast */
+  border-radius: 4px; /* Rounded corners for a modern look */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+.link-item:hover {
+  background-color: #555555; /* Darker background on hover for visual feedback */
+}
+.link-item a {
+  color: #87ceeb; /* High contrast link color */
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+.link-item a:hover {
+  color: #6495ed; /* Darker link color on hover for visual feedback */
+}
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ff69b4; /* Bright pink for visibility */
+  font-size: 16px;
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+.delete-btn:hover {
+  color: #ff33cc; /* Darker pink on hover for visual feedback */
+}
+.export-import-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px; /* Consistent spacing between buttons */
+}
