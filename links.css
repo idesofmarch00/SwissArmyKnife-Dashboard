@@ -1,17 +1,19 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Open Sans", sans-serif; /* Modern font for a clean look */
   padding: 20px;
   background-color: #212121; /* Dark mode background */
   color: #ffffff; /* High contrast text color for dark mode */
+  font-size: 18px; /* Increased font size for better readability */
 }
 .heading-div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   background-color: #333333; /* Dark background for heading with high contrast */
   border-radius: 8px; /* Rounded corners for a modern look */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  font-size: 20px; /* Increased font size for heading */
 }
 .link-item {
   display: flex;
@@ -22,6 +24,7 @@ body {
   background-color: #444444; /* Dark background for links with high contrast */
   border-radius: 4px; /* Rounded corners for a modern look */
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  font-size: 16px; /* Adjusted font size for links */
 }
 .link-item:hover {
   background-color: #555555; /* Darker background on hover for visual feedback */
@@ -35,18 +38,48 @@ body {
   color: #6495ed; /* Darker link color on hover for visual feedback */
 }
 .delete-btn {
-  background: none;
+  background-color: #ff5252; /* Bright red for delete button */
   border: none;
+  border-radius: 20px; /* Rounded corners for a modern look */
   cursor: pointer;
-  color: #ff69b4; /* Bright pink for visibility */
-  font-size: 16px;
-  transition: color 0.3s ease; /* Smooth transition for hover effect */
+  color: #ffffff; /* White text for contrast */
+  font-size: 16px; /* Adjusted font size for buttons */
+  padding: 8px 12px; /* Padding for a modern look */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 .delete-btn:hover {
-  color: #ff33cc; /* Darker pink on hover for visual feedback */
+  background-color: #e60000; /* Darker red on hover for visual feedback */
+}
+.delete-btn::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f1f8"; /* Trashcan icon */
+  font-size: 16px;
+  margin-right: 8px;
 }
 .export-import-buttons {
   margin-top: 20px;
   display: flex;
   gap: 10px; /* Consistent spacing between buttons */
+}
+.export-import-buttons button {
+  background-color: #4caf50; /* Green for export button */
+  border: none;
+  border-radius: 20px; /* Rounded corners for a modern look */
+  cursor: pointer;
+  color: #ffffff; /* White text for contrast */
+  font-size: 16px; /* Adjusted font size for buttons */
+  padding: 8px 12px; /* Padding for a modern look */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+.export-import-buttons button:hover {
+  background-color: #3e8e41; /* Darker green on hover for visual feedback */
+}
+#export-links {
+  margin-right: 10px;
+}
+#import-links-btn {
+  background-color: #2196f3; /* Blue for import button */
+}
+#import-links-btn:hover {
+  background-color: #0b7dda; /* Darker blue on hover for visual feedback */
 }
