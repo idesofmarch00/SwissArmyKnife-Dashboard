@@ -37,22 +37,26 @@ enabledToggle.addEventListener("change", (event) => {
   chrome.storage.local.set({ enabled });
 });
 
-document.getElementById("reminder-time").addEventListener("change", (event) => {
-  const reminderTime = parseInt(event.target.value, 10);
-  chrome.storage.local.set({ reminderTime });
-});
-
 window.addEventListener("DOMContentLoaded", () => {
   chrome.storage.local.get(
     ["enabled", "blocked", "resolution"],
     function (local) {
       const { enabled, blocked, resolution } = local;
       if (!Array.isArray(blocked)) {
-        blocked = []; // Ensure blocked is an array
+        return;
       }
-      blockedList.value = blocked.join("\n"); // Set the blocked list
-      resolutionSelect.value = resolution || SHOW_BLOCKED_INFO_PAGE; // Default to SHOW_BLOCKED_INFO_PAGE if not set
-      enabledToggle.checked = enabled !== undefined ? enabled : false; // Default to false if not set
+
+      // blocked
+      var value = blocked.join("\r\n"); // display every blocked in new line
+      blockedList.value = value;
+
+      // resolution
+      resolutionSelect.value = resolution;
+
+      // enabled
+      enabledToggle.checked = enabled;
+
+      // UI ready
       document.body.classList.add("ready");
     }
   );
