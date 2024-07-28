@@ -4,13 +4,9 @@
   "version": "2.0.0",
   "description": "My Personal Dashboard with a Site blocker, a Greeting,Time,Temperature,Random Quote,Random Joke,Dogecoin Price Tracker ,Todo list ,Pomodoro Timer and DuckDuckGo Search Bar on a Background Image for every refresh and New Tab.",
 
-  "browser-action": {
-    "default-icon": "images/icon.png"
-  },
-
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "images/icon.png"
+    "default-icon": "images/icon.png"
   },
 
   "icons": {

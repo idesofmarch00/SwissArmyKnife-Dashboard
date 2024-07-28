@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 /* global chrome */
 
@@ -108,38 +108,38 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.alarms.create("checkLinks", { periodInMinutes: 1 });
 });
 
-chrome.alarms.onAlarm.addListener((alarm) => {
-  if (alarm.name === "checkLinks") {
-    chrome.storage.local.get(["savedLinks", "reminderTime"], (result) => {
-      const { savedLinks, reminderTime } = result;
-      const now = Date.now();
-      const reminderTimeMs = (reminderTime || 60) * 60 * 1000; // Default to 60 minutes
+// chrome.alarms.onAlarm.addListener((alarm) => {
+//   if (alarm.name === "checkLinks") {
+//     chrome.storage.local.get(["savedLinks", "reminderTime"], (result) => {
+//       const { savedLinks, reminderTime } = result;
+//       const now = Date.now();
+//       const reminderTimeMs = (reminderTime || 60) * 60 * 1000; // Default to 60 minutes
 
-      savedLinks.forEach((link) => {
-        if (now - link.lastOpened > reminderTimeMs) {
-          chrome.notifications.create(
-            {
-              type: "basic",
-              iconUrl: "images/icon.png",
-              title: "Reminder",
-              message: `You haven't visited ${link.url} in a while.`,
-              buttons: [{ title: "Open Link" }],
-              requireInteraction: true,
-            },
-            (notificationId) => {
-              chrome.notifications.onButtonClicked.addListener(
-                (notifId, btnIdx) => {
-                  if (notifId === notificationId && btnIdx === 0) {
-                    chrome.tabs.create({ url: link.url });
-                    link.lastOpened = now;
-                    chrome.storage.local.set({ savedLinks });
-                  }
-                }
-              );
-            }
-          );
-        }
-      });
-    });
-  }
-});
+//       savedLinks.forEach((link) => {
+//         if (now - link.lastOpened > reminderTimeMs) {
+//           chrome.notifications.create(
+//             {
+//               type: "basic",
+//               iconUrl: "images/icon.png",
+//               title: "Reminder",
+//               message: `You haven't visited ${link.url} in a while.`,
+//               buttons: [{ title: "Open Link" }],
+//               requireInteraction: true,
+//             },
+//             (notificationId) => {
+//               chrome.notifications.onButtonClicked.addListener(
+//                 (notifId, btnIdx) => {
+//                   if (notifId === notificationId && btnIdx === 0) {
+//                     chrome.tabs.create({ url: link.url });
+//                     link.lastOpened = now;
+//                     chrome.storage.local.set({ savedLinks });
+//                   }
+//                 }
+//               );
+//             }
+//           );
+//         }
+//       });
+//     });
+//   }
+// });

@@ -1,8 +1,8 @@
-"use strict";
+// "use strict";
 
 /* global chrome, window, document */
 
-const blockedList = document.getElementById("blocked-list");
+let blockedList = document.getElementById("blocked-list");
 const resolutionSelect = document.getElementById("resolution-select");
 const enabledToggle = document.getElementById("enabled-toggle");
 
