@@ -1,5 +1,5 @@
 fetch(
-  "https://api.unsplash.com/photos/random?orientation=landscape&query=dark&q&auto=format&client_id=y33PIEJ7VVAxxNfTBFl3on5nwpUxi_LZpADm5Z2IcTw"
+  "https://api.unsplash.com/photos/random?orientation=landscape&query=black&q&auto=format&client_id=y33PIEJ7VVAxxNfTBFl3on5nwpUxi_LZpADm5Z2IcTw"
 )
   .then((res) => res.json())
   .then((data) => {
