@@ -1,44 +1,42 @@
-"use strict";
+// "use strict";
 
 /* global chrome */
 
 const CLOSE_TAB = "CLOSE_TAB";
 const SHOW_BLOCKED_INFO_PAGE = "SHOW_BLOCKED_INFO_PAGE";
 
-const RESOLUTIONS = [
-  CLOSE_TAB,
-  SHOW_BLOCKED_INFO_PAGE,
-];
+const RESOLUTIONS = [CLOSE_TAB, SHOW_BLOCKED_INFO_PAGE];
 
 chrome.runtime.onInstalled.addListener(function () {
-  chrome.storage.local.get(["enabled", "blocked", "resolution"], function (local) {
-    if (typeof local.enabled !== "boolean") {
-      chrome.storage.local.set({ enabled: false });
-    }
+  chrome.storage.local.get(
+    ["enabled", "blocked", "resolution"],
+    function (local) {
+      if (typeof local.enabled !== "boolean") {
+        chrome.storage.local.set({ enabled: false });
+      }
 
-    if (!Array.isArray(local.blocked)) {
-      chrome.storage.local.set({ blocked: [] });
-    }
+      if (!Array.isArray(local.blocked)) {
+        chrome.storage.local.set({ blocked: [] });
+      }
 
-    if (!RESOLUTIONS.includes(local.resolution)) {
-      chrome.storage.local.set({ resolution: CLOSE_TAB });
+      if (!RESOLUTIONS.includes(local.resolution)) {
+        chrome.storage.local.set({ resolution: CLOSE_TAB });
+      }
     }
-  });
+  );
 });
 
 const __removeProtocol = (url) => url.replace(/^http(s?):\/\//, "");
 const __removeWww = (url) => url.replace(/^www\./, "");
-const __removeTrailingSlash = (url) => url.endsWith("/") ? url.slice(0, -1) : url;
+const __removeTrailingSlash = (url) =>
+  url.endsWith("/") ? url.slice(0, -1) : url;
 
 // "https://www.youtube.com/" => "youtube.com"
 // "https://www.youtube.com/feed/explore" => "youtube.com/feed/explore"
 // "https://music.youtube.com/" => "music.youtube.com"
 // "https://music.youtube.com/explore" => "music.youtube.com/explore"
-const normalizeUrl = (url) => [url]
-  .map(__removeProtocol)
-  .map(__removeWww)
-  .map(__removeTrailingSlash)
-  .pop();
+const normalizeUrl = (url) =>
+  [url].map(__removeProtocol).map(__removeWww).map(__removeTrailingSlash).pop();
 
 // ["youtube.com", "!music.youtube.com"] => [{ path: "music.youtube.com", type: "allow" }, { path: "youtube.com", type: "block" }]
 // ["https://youtube.com/", "!https://music.youtube.com/"] => [{ path: "music.youtube.com", type: "allow" }, { path: "youtube.com", type: "block" }]
@@ -67,25 +65,81 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
 
   const normalizedUrl = normalizeUrl(url);
 
-  chrome.storage.local.get(["enabled", "blocked", "resolution"], function (local) {
-    const { enabled, blocked, resolution } = local;
-    if (!enabled || !Array.isArray(blocked) || blocked.length === 0 || !RESOLUTIONS.includes(resolution)) {
-      return;
-    }
+  chrome.storage.local.get(
+    ["enabled", "blocked", "resolution"],
+    function (local) {
+      const { enabled, blocked, resolution } = local;
+      if (
+        !enabled ||
+        !Array.isArray(blocked) ||
+        blocked.length === 0 ||
+        !RESOLUTIONS.includes(resolution)
+      ) {
+        return;
+      }
 
-    const rules = getRules(blocked);
-    const foundRule = rules.find((rule) => normalizedUrl.startsWith(rule.path) || normalizedUrl.endsWith(rule.path));
-    if (!foundRule || foundRule.type === "allow") {
-      return;
-    }
+      const rules = getRules(blocked);
+      const foundRule = rules.find(
+        (rule) =>
+          normalizedUrl.startsWith(rule.path) ||
+          normalizedUrl.endsWith(rule.path)
+      );
+      if (!foundRule || foundRule.type === "allow") {
+        return;
+      }
 
-    switch (resolution) {
-    case CLOSE_TAB:
-      chrome.tabs.remove(tabId);
-      break;
-    case SHOW_BLOCKED_INFO_PAGE:
-      chrome.tabs.update(tabId, { url: `${chrome.runtime.getURL("blocked.html")}?url=${url}` });
-      break;
+      switch (resolution) {
+        case CLOSE_TAB:
+          chrome.tabs.remove(tabId);
+          break;
+        case SHOW_BLOCKED_INFO_PAGE:
+          chrome.tabs.update(tabId, {
+            url: `${chrome.runtime.getURL("blocked.html")}?url=${url}`,
+          });
+          break;
+      }
     }
-  });
+  );
 });
+
+const CHECK_INTERVAL = 60 * 1000; // Check every minute
+
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.alarms.create("checkLinks", { periodInMinutes: 1 });
+});
+
+// chrome.alarms.onAlarm.addListener((alarm) => {
+//   if (alarm.name === "checkLinks") {
+//     chrome.storage.local.get(["savedLinks", "reminderTime"], (result) => {
+//       const { savedLinks, reminderTime } = result;
+//       const now = Date.now();
+//       const reminderTimeMs = (reminderTime || 60) * 60 * 1000; // Default to 60 minutes
+
+//       savedLinks.forEach((link) => {
+//         if (now - link.lastOpened > reminderTimeMs) {
+//           chrome.notifications.create(
+//             {
+//               type: "basic",
+//               iconUrl: "images/icon.png",
+//               title: "Reminder",
+//               message: `You haven't visited ${link.url} in a while.`,
+//               buttons: [{ title: "Open Link" }],
+//               requireInteraction: true,
+//             },
+//             (notificationId) => {
+//               chrome.notifications.onButtonClicked.addListener(
+//                 (notifId, btnIdx) => {
+//                   if (notifId === notificationId && btnIdx === 0) {
+//                     chrome.tabs.create({ url: link.url });
+//                     link.lastOpened = now;
+//                     chrome.storage.local.set({ savedLinks });
+//                   }
+//                 }
+//               );
+//             }
+//           );
+//         }
+//       });
+//     });
+//   }
+// });
