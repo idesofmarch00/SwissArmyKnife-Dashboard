@@ -36,5 +36,8 @@ navigator.geolocation.getCurrentPosition((position) => {
                     <p class="weather-city">${city}</p>
                 `;
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error(err);
+      weather.textContent = "Failed to load data";
+    });
 });
